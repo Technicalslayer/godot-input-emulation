@@ -1,0 +1,14 @@
+[configuration]
+
+entry_symbol = "input_emulation_init"
+compatibility_minimum = "4.1"
+
+[libraries]
+macos.debug = "res://addons/godot-input-emulation/bin/godot-input-emulation.macos.template_debug.framework"
+macos.release = "res://addons/godot-input-emulation/bin/godot-input-emulation.macos.template_release.framework"
+windows.debug.x86_64 = "res://addons/godot-input-emulation/bin/godot-input-emulation.windows.template_debug.x86_64.dll"
+windows.release.x86_64 = "res://addons/godot-input-emulation/bin/godot-input-emulation.windows.template_release.x86_64.dll"
+linux.debug.x86_64 = "res://addons/godot-input-emulation/bin/godot-input-emulation.linux.template_debug.x86_64.so"
+linux.release.x86_64 = "res://addons/godot-input-emulation/bin/godot-input-emulation.linux.template_release.x86_64.so"
+web.debug.wasm32 = "res://addons/godot-input-emulation/bin/godot-input-emulation.javascript.template_debug.wasm32.wasm"
+web.release.wasm32 = "res://addons/godot-input-emulation/bin/godot-input-emulation.javascript.template_release.wasm32.wasm"
