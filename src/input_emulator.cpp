@@ -8,8 +8,8 @@ void InputEmulator::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("click_mouse"), &InputEmulator::click_mouse);
 	// ClassDB::bind_method(D_METHOD("sdl_key_input"), &InputEmulator::sdl_key_input);
 	ClassDB::bind_method(D_METHOD("single_key_press_and_release", "virutal_key"), &InputEmulator::single_key_press_and_release);
-	// ClassDB::bind_method(D_METHOD("sdl_single_key_press", "virtual_key"), &InputEmulator::sdl_single_key_press);
-	// ClassDB::bind_method(D_METHOD("sdl_single_key_release", "virtual_key"), &InputEmulator::sdl_single_key_release);
+	ClassDB::bind_method(D_METHOD("single_key_press", "virtual_key"), &InputEmulator::single_key_press);
+	ClassDB::bind_method(D_METHOD("single_key_release", "virtual_key"), &InputEmulator::single_key_release);
 }
 
 // void InputEmulator::print_type(const Variant &p_variant) const {
@@ -49,4 +49,25 @@ void InputEmulator::single_key_press_and_release(int virtual_key){
 
 	SendInput(ARRAYSIZE(inputs), inputs, sizeof(INPUT));
 
+}
+
+void InputEmulator::single_key_press(int virtual_key){
+	INPUT inputs[1] = {};
+	ZeroMemory(inputs, sizeof(inputs));
+
+	inputs[0].type = INPUT_KEYBOARD;
+	inputs[0].ki.wVk = virtual_key;
+
+	SendInput(ARRAYSIZE(inputs), inputs, sizeof(INPUT));
+}
+
+void InputEmulator::single_key_release(int virtual_key){
+	INPUT inputs[1] = {};
+	ZeroMemory(inputs, sizeof(inputs));
+
+	inputs[0].type = INPUT_KEYBOARD;
+	inputs[0].ki.wVk = virtual_key;
+	inputs[0].ki.dwFlags = KEYEVENTF_KEYUP;
+
+	SendInput(ARRAYSIZE(inputs), inputs, sizeof(INPUT));
 }
