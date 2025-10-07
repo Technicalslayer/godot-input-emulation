@@ -4,13 +4,13 @@
 void InputEmulator::_bind_methods() {
 	// godot::ClassDB::bind_method(D_METHOD("print_type", "variant"), &InputEmulator::print_type);
 
-	ClassDB::bind_method(D_METHOD("move_mouse", "move_vector"), &InputEmulator::move_mouse);
-	ClassDB::bind_method(D_METHOD("left_click_mouse"), &InputEmulator::left_click_mouse);
-	ClassDB::bind_method(D_METHOD("right_click_mouse"), &InputEmulator::right_click_mouse);
-	ClassDB::bind_method(D_METHOD("left_mouse_down"), &InputEmulator::left_mouse_down);
-	ClassDB::bind_method(D_METHOD("left_mouse_up"), &InputEmulator::left_mouse_up);
-	ClassDB::bind_method(D_METHOD("right_mouse_down"), &InputEmulator::right_mouse_down);
-	ClassDB::bind_method(D_METHOD("right_mouse_up"), &InputEmulator::right_mouse_up);
+	ClassDB::bind_method(D_METHOD("mouse_move", "move_vector"), &InputEmulator::mouse_move);
+	ClassDB::bind_method(D_METHOD("mouse_left_click"), &InputEmulator::mouse_left_click);
+	ClassDB::bind_method(D_METHOD("mouse_right_click"), &InputEmulator::mouse_right_click);
+	ClassDB::bind_method(D_METHOD("mouse_left_down"), &InputEmulator::mouse_left_down);
+	ClassDB::bind_method(D_METHOD("mouse_left_up"), &InputEmulator::mouse_left_up);
+	ClassDB::bind_method(D_METHOD("mouse_right_down"), &InputEmulator::mouse_right_down);
+	ClassDB::bind_method(D_METHOD("mouse_right_up"), &InputEmulator::mouse_right_up);
 	ClassDB::bind_method(D_METHOD("mouse_scroll", "scroll_amount"), &InputEmulator::mouse_scroll);
 	
 	// ClassDB::bind_method(D_METHOD("sdl_key_input"), &InputEmulator::sdl_key_input);
@@ -24,7 +24,7 @@ void InputEmulator::_bind_methods() {
 // }
 
 
-void InputEmulator::move_mouse(Vector2 move_vector){
+void InputEmulator::mouse_move(Vector2 move_vector){
 	INPUT input;
 	input.type = INPUT_MOUSE;
 	input.mi.mouseData = 0;
@@ -34,7 +34,7 @@ void InputEmulator::move_mouse(Vector2 move_vector){
 	SendInput(1, &input, sizeof(input));
 }
 
-void InputEmulator::left_click_mouse(){
+void InputEmulator::mouse_left_click(){
 	INPUT input;
 	input.type = INPUT_MOUSE;
 	input.mi.mouseData = 0;
@@ -42,7 +42,7 @@ void InputEmulator::left_click_mouse(){
 	SendInput(1, &input, sizeof(input));
 }
 
-void InputEmulator::right_click_mouse(){
+void InputEmulator::mouse_right_click(){
 	INPUT input;
 	input.type = INPUT_MOUSE;
 	input.mi.mouseData = 0;
@@ -50,7 +50,7 @@ void InputEmulator::right_click_mouse(){
 	SendInput(1, &input, sizeof(input));
 }
 
-void InputEmulator::left_mouse_down(){
+void InputEmulator::mouse_left_down(){
 	INPUT input;
 	input.type = INPUT_MOUSE;
 	input.mi.mouseData = 0;
@@ -58,7 +58,7 @@ void InputEmulator::left_mouse_down(){
 	SendInput(1, &input, sizeof(input));
 }
 
-void InputEmulator::left_mouse_up(){
+void InputEmulator::mouse_left_up(){
 	INPUT input;
 	input.type = INPUT_MOUSE;
 	input.mi.mouseData = 0;
@@ -66,7 +66,7 @@ void InputEmulator::left_mouse_up(){
 	SendInput(1, &input, sizeof(input));
 }
 
-void InputEmulator::right_mouse_down(){
+void InputEmulator::mouse_right_down(){
 	INPUT input;
 	input.type = INPUT_MOUSE;
 	input.mi.mouseData = 0;
@@ -74,7 +74,7 @@ void InputEmulator::right_mouse_down(){
 	SendInput(1, &input, sizeof(input));
 }
 
-void InputEmulator::right_mouse_up(){
+void InputEmulator::mouse_right_up(){
 	INPUT input;
 	input.type = INPUT_MOUSE;
 	input.mi.mouseData = 0;
