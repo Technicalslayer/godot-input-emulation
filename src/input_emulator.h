@@ -19,7 +19,13 @@ public:
 	// void print_type(const Variant &p_variant) const;
 
 	void move_mouse(Vector2 move_vector);
-	void click_mouse();
+	void left_click_mouse();
+	void right_click_mouse();
+	void left_mouse_down();
+	void left_mouse_up();
+	void right_mouse_down();
+	void right_mouse_up();
+	void mouse_scroll(int scroll_amount);
 	void single_key_press_and_release(int virtual_key);
 	// void sdl_key_input();
 	void single_key_press(int virtual_key);
