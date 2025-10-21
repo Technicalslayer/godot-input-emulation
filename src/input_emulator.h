@@ -30,5 +30,9 @@ public:
 	// void sdl_key_input();
 	void single_key_press(int virtual_key);
 	void single_key_release(int virtual_key);
+	int map_scan_code_to_virtual_key(int scan_code);
+	int map_char_to_virtual_key(String character);
+	int map_virtual_key_to_char(int virtual_key);
+	
 	// bool sdl_gamepad_events_enabled();
 };

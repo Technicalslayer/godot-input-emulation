@@ -14,9 +14,13 @@ void InputEmulator::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("mouse_scroll", "scroll_amount"), &InputEmulator::mouse_scroll);
 	
 	// ClassDB::bind_method(D_METHOD("sdl_key_input"), &InputEmulator::sdl_key_input);
-	ClassDB::bind_method(D_METHOD("single_key_press_and_release", "virutal_key"), &InputEmulator::single_key_press_and_release);
+	ClassDB::bind_method(D_METHOD("single_key_press_and_release", "virtual_key"), &InputEmulator::single_key_press_and_release);
 	ClassDB::bind_method(D_METHOD("single_key_press", "virtual_key"), &InputEmulator::single_key_press);
 	ClassDB::bind_method(D_METHOD("single_key_release", "virtual_key"), &InputEmulator::single_key_release);
+
+	ClassDB::bind_method(D_METHOD("map_scan_code_to_virtual_key", "scan_code"), &InputEmulator::map_scan_code_to_virtual_key);
+	ClassDB::bind_method(D_METHOD("map_char_to_virtual_key", "character"), &InputEmulator::map_char_to_virtual_key);
+	ClassDB::bind_method(D_METHOD("map_virtual_key_to_char", "virtual_key"), &InputEmulator::map_virtual_key_to_char);
 }
 
 // void InputEmulator::print_type(const Variant &p_variant) const {
@@ -127,4 +131,16 @@ void InputEmulator::single_key_release(int virtual_key){
 	inputs[0].ki.dwFlags = KEYEVENTF_KEYUP;
 
 	SendInput(ARRAYSIZE(inputs), inputs, sizeof(INPUT));
+}
+
+int InputEmulator::map_scan_code_to_virtual_key(int scan_code) {
+	return MapVirtualKeyA(scan_code, MAPVK_VSC_TO_VK);
+}
+
+int InputEmulator::map_char_to_virtual_key(String character) {
+	return VkKeyScanA(character[0]);
+}
+
+int InputEmulator::map_virtual_key_to_char(int virtual_key) {
+	return 0;
 }
