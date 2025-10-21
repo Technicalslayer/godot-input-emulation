@@ -1,5 +1,6 @@
 # Godot Input Emulation
 A GDExtension for Godot 4.5 that enables sending virtual keyboard and mouse inputs to the OS.
+Currently only supports Windows.
 
 ## Usage - Template
 
