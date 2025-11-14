@@ -17,6 +17,7 @@ void InputEmulator::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("single_key_press_and_release", "virtual_key"), &InputEmulator::single_key_press_and_release);
 	ClassDB::bind_method(D_METHOD("single_key_press", "virtual_key"), &InputEmulator::single_key_press);
 	ClassDB::bind_method(D_METHOD("single_key_release", "virtual_key"), &InputEmulator::single_key_release);
+	ClassDB::bind_method(D_METHOD("single_unicode_press_and_release", "unicode"), &InputEmulator::single_unicode_press_and_release);
 
 	ClassDB::bind_method(D_METHOD("map_scan_code_to_virtual_key", "scan_code"), &InputEmulator::map_scan_code_to_virtual_key);
 	ClassDB::bind_method(D_METHOD("map_char_to_virtual_key", "character"), &InputEmulator::map_char_to_virtual_key);
@@ -131,6 +132,24 @@ void InputEmulator::single_key_release(int virtual_key){
 	inputs[0].ki.dwFlags = KEYEVENTF_KEYUP;
 
 	SendInput(ARRAYSIZE(inputs), inputs, sizeof(INPUT));
+}
+
+void InputEmulator::single_unicode_press_and_release(int unicode) {
+
+	INPUT inputs[2] = {};
+	ZeroMemory(inputs, sizeof(inputs));
+
+	inputs[0].type = INPUT_KEYBOARD;
+	inputs[0].ki.wVk = 0;
+	inputs[0].ki.dwFlags = KEYEVENTF_UNICODE;
+	inputs[0].ki.wScan = unicode;
+
+	inputs[1].type = INPUT_KEYBOARD;
+	inputs[1].ki.wVk = 0;
+	inputs[1].ki.dwFlags = KEYEVENTF_UNICODE | KEYEVENTF_KEYUP;
+	inputs[1].ki.wScan = unicode;
+
+  	SendInput(ARRAYSIZE(inputs), inputs, sizeof(INPUT));
 }
 
 int InputEmulator::map_scan_code_to_virtual_key(int scan_code) {

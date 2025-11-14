@@ -27,6 +27,7 @@ public:
 	void mouse_right_up();
 	void mouse_scroll(int scroll_amount);
 	void single_key_press_and_release(int virtual_key);
+	void single_unicode_press_and_release(int unicode);
 	// void sdl_key_input();
 	void single_key_press(int virtual_key);
 	void single_key_release(int virtual_key);
